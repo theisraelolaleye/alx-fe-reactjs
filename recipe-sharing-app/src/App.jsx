@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
@@ -28,8 +28,8 @@ function App() {
                 padding: '10px',
                 borderBottom: '2px solid #eee'
               }}>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   style={{
                     textDecoration: 'none',
                     color: '#007bff',
@@ -40,9 +40,9 @@ function App() {
                   }}
                 >
                   🏠 All Recipes
-                </a>
-                <a
-                  href="/favorites"
+                </Link>
+                <Link
+                  to="/favorites"
                   style={{
                     textDecoration: 'none',
                     color: '#dc3545',
@@ -53,7 +53,7 @@ function App() {
                   }}
                 >
                   ❤️ My Favorites
-                </a>
+                </Link>
               </nav>
 
               <AddRecipeForm />
@@ -73,8 +73,8 @@ function App() {
                 padding: '10px',
                 borderBottom: '2px solid #eee'
               }}>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   style={{
                     textDecoration: 'none',
                     color: '#007bff',
@@ -85,9 +85,9 @@ function App() {
                   }}
                 >
                   🏠 All Recipes
-                </a>
-                <a
-                  href="/favorites"
+                </Link>
+                <Link
+                  to="/favorites"
                   style={{
                     textDecoration: 'none',
                     color: '#dc3545',
@@ -98,7 +98,7 @@ function App() {
                   }}
                 >
                   ❤️ My Favorites
-                </a>
+                </Link>
               </nav>
 
               <RecommendationsList />
