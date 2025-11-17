@@ -1,24 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import AddRecipeForm from '../components/AddRecipeForm.jsx'
-import RecipeList from '../components/RecipeList'
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeList from './components/RecipeList';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <AddRecipeForm />
-        <RecipeList />
+    <Router>
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+        <h1 style={{ textAlign: 'center', color: '#333', marginBottom: '30px' }}>
+          Recipe Sharing App
+        </h1>
+
+        <Routes>
+          <Route path="/" element={
+            <div>
+              <AddRecipeForm />
+              <RecipeList />
+            </div>
+          } />
+          <Route path="/recipe/:id" element={<RecipeDetails />} />
+        </Routes>
       </div>
-
-
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
