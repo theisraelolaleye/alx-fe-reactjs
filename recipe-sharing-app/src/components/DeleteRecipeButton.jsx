@@ -1,4 +1,4 @@
-import useRecipeStore from '../../store/recipeStore';
+import useRecipeStore from './recipeStore';
 import { useState } from 'react';
 
 const DeleteRecipeButton = ({ recipeId, onDelete }) => {
