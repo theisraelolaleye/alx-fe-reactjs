@@ -12,6 +12,21 @@ const RecipeDetails = () => {
   const recipe = useRecipeStore(state =>
     state.recipes.find(recipe => recipe.id === parseInt(id))
   );
+  const favorites = useRecipeStore(state => state.favorites); // Array of favorited recipe IDs
+  const addFavorite = useRecipeStore(state => state.addFavorite);
+  const removeFavorite = useRecipeStore(state => state.removeFavorite);
+
+  // Check if current recipe is in user's favorites
+  const isFavorite = favorites.includes(parseInt(id));
+
+  // Toggle favorite status for current recipe
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      removeFavorite(parseInt(id));
+    } else {
+      addFavorite(parseInt(id));
+    }
+  };
 
   if (!recipe) {
     return (
@@ -44,7 +59,28 @@ const RecipeDetails = () => {
         />
       ) : (
         <div>
-          <h1>{recipe.title}</h1>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+            <h1 style={{ margin: 0 }}>{recipe.title}</h1>
+            <button
+              onClick={toggleFavorite}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '32px',
+                cursor: 'pointer',
+                padding: '8px',
+                borderRadius: '50%',
+                transition: 'all 0.2s ease',
+                transform: isFavorite ? 'scale(1.1)' : 'scale(1)',
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+              onMouseLeave={(e) => e.target.style.transform = isFavorite ? 'scale(1.1)' : 'scale(1)'}
+              title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            >
+              {isFavorite ? '❤️' : '🤍'}
+            </button>
+          </div>
+
           <p style={{ fontSize: '18px', lineHeight: '1.6', margin: '20px 0' }}>
             {recipe.description}
           </p>

@@ -7,6 +7,9 @@ const RecipeList = () => {
   const recipes = useRecipeStore(state => state.recipes);
   const searchTerm = useRecipeStore(state => state.searchTerm);
   const filterRecipe = useRecipeStore(state => state.filterRecipe);
+  const favorites = useRecipeStore(state => state.favorites); // Array of favorited recipe IDs
+  const addFavorite = useRecipeStore(state => state.addFavorite);
+  const removeFavorite = useRecipeStore(state => state.removeFavorite);
   const navigate = useNavigate();
 
   // Calculate filtered recipes based on current search term
@@ -69,6 +72,19 @@ const RecipeList = () => {
             );
           };
 
+          // Check if this recipe is currently in user's favorites
+          const isFavorite = favorites.includes(recipe.id);
+
+          // Toggle favorite status without navigating to recipe details
+          const toggleFavorite = (e) => {
+            e.stopPropagation(); // Prevent navigation when clicking favorite button
+            if (isFavorite) {
+              removeFavorite(recipe.id);
+            } else {
+              addFavorite(recipe.id);
+            }
+          };
+
           return (
             <div
               key={recipe.id}
@@ -79,27 +95,60 @@ const RecipeList = () => {
                 backgroundColor: '#f9f9f9',
                 cursor: 'pointer',
                 transition: 'box-shadow 0.2s',
+                position: 'relative',
               }}
               onClick={() => navigate(`/recipe/${recipe.id}`)}
               onMouseEnter={(e) => e.target.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)'}
               onMouseLeave={(e) => e.target.style.boxShadow = 'none'}
             >
-              <h3 style={{ margin: '0 0 10px 0', color: '#333' }}>
-                {highlightSearchTerm(recipe.title, searchTerm)}
-              </h3>
-              <p style={{
-                margin: '0',
-                color: '#666',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                display: '-webkit-box',
-                WebkitLineClamp: 3,
-                WebkitBoxOrient: 'vertical'
-              }}>
-                {highlightSearchTerm(recipe.description, searchTerm)}
-              </p>
-              <div style={{ marginTop: '10px', fontSize: '14px', color: '#007bff' }}>
-                Click to view details →
+              {/* Favorite button */}
+              <button
+                onClick={toggleFavorite}
+                style={{
+                  position: 'absolute',
+                  top: '12px',
+                  right: '12px',
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '20px',
+                  cursor: 'pointer',
+                  padding: '4px',
+                  borderRadius: '50%',
+                  transition: 'all 0.2s ease',
+                  transform: isFavorite ? 'scale(1.1)' : 'scale(1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.stopPropagation();
+                  e.target.style.transform = 'scale(1.2)';
+                  e.target.style.backgroundColor = '#f0f0f0';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = isFavorite ? 'scale(1.1)' : 'scale(1)';
+                  e.target.style.backgroundColor = 'transparent';
+                }}
+                title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+              >
+                {isFavorite ? '❤️' : '🤍'}
+              </button>
+
+              <div style={{ paddingRight: '40px' }}>
+                <h3 style={{ margin: '0 0 10px 0', color: '#333' }}>
+                  {highlightSearchTerm(recipe.title, searchTerm)}
+                </h3>
+                <p style={{
+                  margin: '0',
+                  color: '#666',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: 'vertical'
+                }}>
+                  {highlightSearchTerm(recipe.description, searchTerm)}
+                </p>
+                <div style={{ marginTop: '10px', fontSize: '14px', color: '#007bff' }}>
+                  Click to view details →
+                </div>
               </div>
             </div>
           );

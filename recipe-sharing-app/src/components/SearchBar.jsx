@@ -7,15 +7,17 @@ const SearchBar = () => {
   const filterRecipe = useRecipeStore(state => state.filterRecipe);
   const [localSearchTerm, setLocalSearchTerm] = useState(searchTerm);
 
+  // Debounced search: wait 300ms after user stops typing before filtering
   useEffect(() => {
     const delayedSearch = setTimeout(() => {
       setSearchTerm(localSearchTerm);
       filterRecipe();
     }, 300); // Debounce search for better performance
 
-    return () => clearTimeout(delayedSearch);
+    return () => clearTimeout(delayedSearch); // Cleanup timeout on component unmount
   }, [localSearchTerm, setSearchTerm, filterRecipe]);
 
+  // Clear search input and reset search term in store
   const handleClear = () => {
     setLocalSearchTerm('');
     setSearchTerm('');
