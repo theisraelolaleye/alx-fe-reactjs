@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const GITHUB_USER_URL = 'https://api.github.com/users';
+const GITHUB_SEARCH_URL = 'https://api.github.com/search/users';
 
 export async function fetchUserData(username) {
   if (!username) throw new Error('username required');
@@ -13,4 +14,31 @@ export async function fetchUserData(username) {
     error.original = err;
     throw error;
   }
+}
+
+export async function searchUsers({ username = '', location = '', minRepos = '', page = 1, perPage = 10 }) {
+  // Build search query using GitHub qualifiers
+  const segments = [];
+  if (username) segments.push(username);
+  if (location) segments.push(`location:${location}`);
+  if (minRepos) segments.push(`repos:>=${minRepos}`);
+  // Fallback if user leaves everything blank
+  if (segments.length === 0) segments.push('type:user');
+  const q = encodeURIComponent(segments.join(' '));
+  const url = `${GITHUB_SEARCH_URL}?q=${q}&per_page=${perPage}&page=${page}`;
+  try {
+    const res = await axios.get(url);
+    return res.data; // { total_count, items: [...] }
+  } catch (err) {
+    const error = new Error('Failed to search users');
+    error.original = err;
+    throw error;
+  }
+}
+
+export async function hydrateUserDetails(logins = []) {
+  // Fetch details for each login concurrently; limit to avoid rate issues
+  const slice = logins.slice(0, 10); // safety cap
+  const promises = slice.map((login) => fetchUserData(login));
+  return Promise.all(promises);
 }
