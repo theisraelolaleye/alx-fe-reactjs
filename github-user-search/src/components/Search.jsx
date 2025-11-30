@@ -99,17 +99,17 @@ export default function Search() {
               onChange={(e) => setLocation(e.target.value)}
             />
           </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="minRepos" className="text-sm font-medium text-neutral-700 dark:text-neutral-200">Min Repos</label>
-              <input
-                id="minRepos"
-                className="input-base"
-                placeholder="e.g. 50"
-                value={minRepos}
-                onChange={(e) => setMinRepos(e.target.value)}
-                inputMode="numeric"
-              />
-            </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="minRepos" className="text-sm font-medium text-neutral-700 dark:text-neutral-200">Min Repos</label>
+            <input
+              id="minRepos"
+              className="input-base"
+              placeholder="e.g. 50"
+              value={minRepos}
+              onChange={(e) => setMinRepos(e.target.value)}
+              inputMode="numeric"
+            />
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <button type="submit" className="btn-primary" disabled={loading}>Search</button>
