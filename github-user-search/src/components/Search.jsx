@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { searchUsers, hydrateUserDetails } from '../services/githubService';
+import { searchUsers, hydrateUserDetails, fetchUserData } from '../services/githubService';
 
 export default function Search() {
   const [username, setUsername] = useState('');
@@ -12,6 +12,7 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [initialSearchDone, setInitialSearchDone] = useState(false);
+  const [exactUser, setExactUser] = useState(null); // direct fetchUserData result
 
   // Hydrate details whenever rawItems change
   useEffect(() => {
@@ -38,6 +39,18 @@ export default function Search() {
     setError(null);
     try {
       const nextPage = resetPage ? 1 : page;
+      // If user provided only a username (no other filters) attempt an exact lookup first.
+      let fetchedExact = null;
+      if (resetPage && username.trim() && !location.trim() && !minRepos.trim()) {
+        try {
+          fetchedExact = await fetchUserData(username.trim());
+          setExactUser(fetchedExact);
+        } catch (e) {
+          setExactUser(null); // ignore exact miss, continue with search
+        }
+      } else if (resetPage) {
+        setExactUser(null);
+      }
       const data = await searchUsers({
         username: username.trim(),
         location: location.trim(),
@@ -125,6 +138,7 @@ export default function Search() {
               setPage(1);
               setError(null);
               setInitialSearchDone(false);
+              setExactUser(null);
             }}
             className="btn-secondary"
             disabled={loading}
@@ -144,6 +158,32 @@ export default function Search() {
       )}
 
       <div className="space-y-4">
+        {exactUser && (
+          <div className="flex items-center gap-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
+            <img
+              src={exactUser.avatar_url}
+              alt={`${exactUser.login} avatar`}
+              className="w-16 h-16 rounded-md object-cover"
+            />
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-neutral-900 dark:text-neutral-100 truncate">{exactUser.name || exactUser.login}</p>
+              <p className="text-xs text-neutral-600 dark:text-neutral-300 truncate">@{exactUser.login} (Exact match)</p>
+              <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-neutral-700 dark:text-neutral-300">
+                {exactUser.location && <span>📍 {exactUser.location}</span>}
+                <span>📦 {exactUser.public_repos} repos</span>
+                {exactUser.company && <span>🏢 {exactUser.company}</span>}
+              </div>
+              <a
+                href={exactUser.html_url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-brand-600 hover:text-brand-700 text-sm mt-2 inline-block"
+              >
+                View Profile →
+              </a>
+            </div>
+          </div>
+        )}
         {results.map((u) => (
           <div key={u.login} className="flex items-center gap-4 p-4 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
             <img
