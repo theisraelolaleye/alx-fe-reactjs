@@ -3,9 +3,11 @@ export default {
   content: [
     "./public/index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
     extend: {},
   },
   plugins: [],
 }
+
