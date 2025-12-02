@@ -19,7 +19,7 @@ export default function HomePage() {
       <main className="px-6 md:px-10 pb-16  ">
         <section>
           <h2 className="sr-only">Featured Recipes</h2>
-          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 ">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ">
             {recipes.map((recipe) => (
               <article
                 key={recipe.id}
