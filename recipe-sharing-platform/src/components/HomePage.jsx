@@ -10,20 +10,20 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen max-w-7xl w-full mx-auto bg-red-500">
       <header className="px-6 py-8 md:px-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Recipe Sharing Platform</h1>
-        <p className="mt-2 text-gray-600">Discover and share delicious recipes.</p>
+        <p className="mt-2 text-gray-600 text-red-700">Discover and share delicious recipes.</p>
       </header>
 
-      <main className="px-6 md:px-10 pb-16">
+      <main className="px-6 md:px-10 pb-16  ">
         <section>
           <h2 className="sr-only">Featured Recipes</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-3 md:grid-cols-3 ">
             {recipes.map((recipe) => (
               <article
                 key={recipe.id}
-                className="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-transform transition-shadow duration-200 hover:shadow-md hover:-translate-y-0.5"
+                className="group bg-white rounded-xl shadow-sm max-w-sm border border-gray-100 overflow-hidden transition-transform  duration-200 hover:shadow-md hover:-translate-y-0.5"
               >
                 <div className="aspect-[4/3] w-full overflow-hidden bg-gray-100">
                   <img
