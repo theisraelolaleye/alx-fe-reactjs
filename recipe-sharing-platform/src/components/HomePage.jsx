@@ -10,10 +10,10 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen max-w-7xl w-full mx-auto bg-red-500">
+    <div className="min-h-screen w-full mx-auto ">
       <header className="px-6 py-8 md:px-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Recipe Sharing Platform</h1>
-        <p className="mt-2 text-gray-600 text-red-700">Discover and share delicious recipes.</p>
+        <p className="mt-2 text-gray-700">Discover and share delicious recipes.</p>
       </header>
 
       <main className="px-6 md:px-10 pb-16  ">
@@ -38,7 +38,7 @@ export default function HomePage() {
                   <p className="mt-2 text-sm text-gray-600 line-clamp-3">{recipe.summary}</p>
 
                   <a
-                    href={`#/recipe/${recipe.id}`}
+                    href={`/recipe/${recipe.id}`}
                     className="mt-4 inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700"
                   >
                     View details

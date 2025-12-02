@@ -3,24 +3,85 @@
 		"id": 1,
 		"title": "Spaghetti Carbonara",
 		"summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-		"image": "https://via.placeholder.com/600x400?text=Spaghetti+Carbonara"
+		"image": "https://via.placeholder.com/1200x800?text=Spaghetti+Carbonara",
+		"ingredients": [
+			"200g spaghetti",
+			"100g pancetta or bacon",
+			"2 large eggs",
+			"50g grated Parmesan",
+			"2 cloves garlic",
+			"Salt & freshly ground black pepper"
+		],
+		"steps": [
+			"Cook spaghetti in salted boiling water until al dente.",
+			"Fry pancetta with garlic until crisp; remove garlic.",
+			"Whisk eggs with Parmesan and pepper in a bowl.",
+			"Drain pasta, reserve some pasta water.",
+			"Combine pasta with pancetta, remove from heat, toss with egg mixture.",
+			"Loosen with pasta water if needed and serve immediately."
+		]
 	},
 	{
 		"id": 2,
 		"title": "Chicken Tikka Masala",
 		"summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-		"image": "https://via.placeholder.com/600x400?text=Chicken+Tikka+Masala"
+		"image": "https://via.placeholder.com/1200x800?text=Chicken+Tikka+Masala",
+		"ingredients": [
+			"500g chicken breast, cubed",
+			"1 cup yogurt",
+			"2 tbsp tikka masala paste",
+			"1 onion, chopped",
+			"2 cups tomato puree",
+			"1/2 cup cream",
+			"Garam masala, cumin, salt"
+		],
+		"steps": [
+			"Marinate chicken in yogurt and tikka paste for 1 hour.",
+			"Grill or pan-sear chicken until lightly charred.",
+			"Sauté onions with spices; add tomato puree and simmer.",
+			"Stir in cream and add chicken back to sauce.",
+			"Simmer 10 minutes and serve with rice or naan."
+		]
 	},
 	{
 		"id": 3,
 		"title": "Avocado Toast",
 		"summary": "Toasted sourdough topped with smashed avocado, chili flakes, and lemon.",
-		"image": "https://via.placeholder.com/600x400?text=Avocado+Toast"
+		"image": "https://via.placeholder.com/1200x800?text=Avocado+Toast",
+		"ingredients": [
+			"2 slices sourdough",
+			"1 ripe avocado",
+			"1/2 lemon, juiced",
+			"Chili flakes",
+			"Salt & pepper"
+		],
+		"steps": [
+			"Toast the bread to your liking.",
+			"Mash avocado with lemon juice, salt, and pepper.",
+			"Spread on toast and sprinkle chili flakes.",
+			"Optional: top with poached egg."
+		]
 	},
 	{
 		"id": 4,
 		"title": "Beef Stir Fry",
 		"summary": "Quick stir-fried beef with colorful veggies in a savory sauce.",
-		"image": "https://via.placeholder.com/600x400?text=Beef+Stir+Fry"
+		"image": "https://via.placeholder.com/1200x800?text=Beef+Stir+Fry",
+		"ingredients": [
+			"300g beef strips",
+			"1 bell pepper, sliced",
+			"1 onion, sliced",
+			"2 tbsp soy sauce",
+			"1 tbsp oyster sauce",
+			"1 tsp cornstarch",
+			"1 clove garlic, minced"
+		],
+		"steps": [
+			"Toss beef with soy, cornstarch, and a pinch of sugar.",
+			"Stir-fry beef until browned; remove.",
+			"Stir-fry vegetables with garlic until crisp-tender.",
+			"Return beef, add oyster sauce, and toss to coat.",
+			"Serve hot with steamed rice."
+		]
 	}
 ]
