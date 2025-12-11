@@ -12,7 +12,7 @@
 			"2 cloves garlic",
 			"Salt & freshly ground black pepper"
 		],
-		"steps": [
+		"instructions": [
 			"Cook spaghetti in salted boiling water until al dente.",
 			"Fry pancetta with garlic until crisp; remove garlic.",
 			"Whisk eggs with Parmesan and pepper in a bowl.",
@@ -35,7 +35,7 @@
 			"1/2 cup cream",
 			"Garam masala, cumin, salt"
 		],
-		"steps": [
+		"instructions": [
 			"Marinate chicken in yogurt and tikka paste for 1 hour.",
 			"Grill or pan-sear chicken until lightly charred.",
 			"Sauté onions with spices; add tomato puree and simmer.",
@@ -55,7 +55,7 @@
 			"Chili flakes",
 			"Salt & pepper"
 		],
-		"steps": [
+		"instructions": [
 			"Toast the bread to your liking.",
 			"Mash avocado with lemon juice, salt, and pepper.",
 			"Spread on toast and sprinkle chili flakes.",
@@ -76,7 +76,7 @@
 			"1 tsp cornstarch",
 			"1 clove garlic, minced"
 		],
-		"steps": [
+		"instructions": [
 			"Toss beef with soy, cornstarch, and a pinch of sugar.",
 			"Stir-fry beef until browned; remove.",
 			"Stir-fry vegetables with garlic until crisp-tender.",

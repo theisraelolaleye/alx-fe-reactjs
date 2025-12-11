@@ -1,31 +1,12 @@
 import { Link, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import data from '../data.json'
 
 export default function RecipeDetail() {
+  
   const { id } = useParams()
   const recipeId = Number(id)
-  const [recipe, setRecipe] = useState(null)
-
-  useEffect(() => {
-    // Load the recipe when the route param changes
-    const found = data.find((r) => r.id === recipeId) || null
-    setRecipe(found)
-  }, [recipeId])
-
-  if (recipe === null) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center">
-        <div className="max-w-2xl mx-auto px-6 md:px-10 py-12">
-          <h1 className="text-2xl font-semibold text-gray-900">Loading…</h1>
-          <p className="mt-2 text-gray-600">Fetching recipe details.</p>
-          <Link to="/" className="mt-6 inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
-            ← Back to Home
-          </Link>
-        </div>
-      </div>
-    )
-  }
+  const recipe = useMemo(() => data.find((r) => r.id === recipeId), [recipeId])
 
   if (!recipe) {
     return (
@@ -43,7 +24,9 @@ export default function RecipeDetail() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      
       <div className="max-w-5xl mx-auto px-6 md:px-10 py-8 md:py-12">
+
         <Link to="/" className="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium">
           ← Back to Home
         </Link>
@@ -79,12 +62,13 @@ export default function RecipeDetail() {
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
             <h2 className="text-xl font-semibold text-gray-900">Instructions</h2>
             <ol className="mt-4 space-y-3 list-decimal list-inside text-gray-700">
-              {(recipe.steps || []).map((step, idx) => (
+              {(recipe.instructions || []).map((step, idx) => (
                 <li key={idx} className="leading-relaxed">{step}</li>
               ))}
             </ol>
           </div>
         </section>
+
       </div>
     </div>
   )
