@@ -3,9 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object({
-  username: Yup.string().trim().required('Username is required'),
-  email: Yup.string().trim().email('Enter a valid email').required('Email is required'),
-  password: Yup.string().trim().required('Password is required'),
+  username: Yup.string().required('Username is required'),
+  email: Yup.string().email('Enter a valid email').required('Email is required'),
+  password: Yup.string().required('Password is required'),
 })
 
 const initialValues = {
