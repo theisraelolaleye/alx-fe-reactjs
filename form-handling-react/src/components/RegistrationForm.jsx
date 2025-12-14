@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
 
 const RegistrationForm = () => {
-  const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-  })
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [errors, setErrors] = useState({})
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
+    if (name === 'username') setUsername(value)
+    else if (name === 'email') setEmail(value)
+    else if (name === 'password') setPassword(value)
   }
 
   const validate = () => {
     const newErrors = {}
-    if (!form.username.trim()) newErrors.username = 'Username is required'
-    if (!form.email.trim()) newErrors.email = 'Email is required'
-    if (!form.password.trim()) newErrors.password = 'Password is required'
+    if (!username.trim()) newErrors.username = 'Username is required'
+    if (!email.trim()) newErrors.email = 'Email is required'
+    if (!password.trim()) newErrors.password = 'Password is required'
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -27,11 +27,13 @@ const RegistrationForm = () => {
     if (!validate()) return
 
     // For demo purposes; replace with API call as needed
-    console.log('Registration data:', form)
+    console.log('Registration data:', { username, email, password })
     alert('Registration successful!')
 
     // Reset form on success
-    setForm({ username: '', email: '', password: '' })
+    setUsername('')
+    setEmail('')
+    setPassword('')
     setErrors({})
   }
 
@@ -46,7 +48,7 @@ const RegistrationForm = () => {
             id="username"
             name="username"
             type="text"
-            value={form.username}
+            value={username}
             onChange={handleChange}
             placeholder="Enter your username"
             style={{ width: '100%', padding: 8 }}
@@ -62,7 +64,7 @@ const RegistrationForm = () => {
             id="email"
             name="email"
             type="email"
-            value={form.email}
+            value={email}
             onChange={handleChange}
             placeholder="Enter your email"
             style={{ width: '100%', padding: 8 }}
@@ -78,7 +80,7 @@ const RegistrationForm = () => {
             id="password"
             name="password"
             type="password"
-            value={form.password}
+            value={password}
             onChange={handleChange}
             placeholder="Enter your password"
             style={{ width: '100%', padding: 8 }}
