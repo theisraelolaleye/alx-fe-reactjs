@@ -1,11 +1,13 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { isAuthenticated, login, logout } from '../utils/auth'
+import { useAuth } from '../context/AuthContext'
 
 const Login = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const from = location.state?.from?.pathname || '/'
+
+  const { isAuthenticated, login, logout } = useAuth()
 
   const handleLogin = () => {
     login()
@@ -17,7 +19,7 @@ const Login = () => {
     navigate('/', { replace: true })
   }
 
-  if (isAuthenticated()) {
+  if (isAuthenticated) {
     return (
       <div style={{ display: 'grid', gap: '0.5rem' }}>
         <h1>You are logged in</h1>
