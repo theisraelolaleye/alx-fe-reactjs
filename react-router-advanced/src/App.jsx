@@ -8,10 +8,8 @@ import './App.css'
 
 function App() {
 
-
   return (
     <>
-
       <Router>
         {/* <nav style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
         <Link to="/">Home</Link>
@@ -37,14 +35,12 @@ function App() {
 
           {/* Dynamic Blog Routes */}
           <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
 
       </Router>
 
     </>
-
-
   )
 }
 
