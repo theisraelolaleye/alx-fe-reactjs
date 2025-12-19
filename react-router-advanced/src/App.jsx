@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Profile from './components/Profile'
 import BlogList from './pages/blog/BlogList'
 import BlogPost from './pages/blog/BlogDetails'
+import ProtectedRoute from './components/ProtectedRoute'
+import Login from './pages/Login'
 import './App.css'
 
 function App() {
@@ -20,12 +22,22 @@ function App() {
           {/* Home Route */}
           <Route path="/" element={<div>Home</div>} />
 
-          {/* Profile Route (nested handled inside Profile) */}
-          <Route path="/profile/*" element={<Profile />} />
+          {/* Auth Routes */}
+          <Route path="/login" element={<Login />} />
+
+          {/* Protected Profile Route (nested handled inside Profile) */}
+          <Route
+            path="/profile/*"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Dynamic Blog Routes */}
           <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
 
       </Router>
